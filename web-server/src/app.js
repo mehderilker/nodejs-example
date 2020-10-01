@@ -39,6 +39,21 @@ app.get('/help',(req,res)=> {
     })
 })
 
+app.get('/help/*', (req, res) => {
+    res.render('404',{
+        title:'404',
+        name:'ilker',
+        errorMessage:'Page not found'
+    })
+})
+app.get('*', (req, res) => {
+    res.render("404",{
+        title:'404',
+        name:'ilker',
+        errorMessage:'Page not found'
+    })
+})
+
 app.listen(3000, () => {
     console.log("Connecting 3000 port ...")
 })
