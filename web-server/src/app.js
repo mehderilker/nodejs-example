@@ -1,18 +1,30 @@
 const express = require('express')
+const path = require('path')
 
 const app = express()
 
-app.get('' , (req,res) =>{
-    res.send('Hello Express ! ')
-} )
+const publicDirectoryPath = path.join(__dirname,'../public')
+
+app.set('view engine','hbs')
+app.use(express.static(publicDirectoryPath))
+
+app.get('',(req,res) => {
+    res.render('index',{
+        title:'Weather'
+    })
+})
+
+
 // Routers = main / help / about 
 
 app.get('/about', (req,res) => {
-    res.send('About Page')
+    res.render('about', {
+        title:'About Page'
+    } )
 })
 
 app.get('/help',(req,res)=> {
-    res.send('Help Page')
+    res.send('HelPage')
 })
 
 app.listen(3000, () => {
