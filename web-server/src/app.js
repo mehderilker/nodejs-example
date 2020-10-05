@@ -23,6 +23,19 @@ app.get('',(req,res) => {
     })
 })
 
+app.get('/weather',(req,res)=>{
+    if(!req.query.address){
+        return res.send({
+            error: 'You must provide an address!'
+        })
+    }
+    res.send({
+        forecats: 'It is snowing',
+        location: 'Philadelphia',
+        address:req.query.address
+    })
+})
+
 // Routers = main / help / about 
 
 app.get('/about', (req,res) => {
@@ -37,6 +50,19 @@ app.get('/help',(req,res)=> {
         title:'Help Page',
         name:'ilker'
     })
+})
+  
+app.get('/products', (req, res) => {
+    console.log(!req.query.search)
+  if(!req.query.search) {
+    return res.send({
+        error: ' You must provide a search term'
+    })
+  }
+  console.log(req.query.search)
+  res.send({
+      products:[]
+  })
 })
 
 app.get('/help/*', (req, res) => {
